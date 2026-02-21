@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fast PDF Editor</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+  </head>
+  <body>
+    <main class="app">
+      <header>
+        <h1>Fast PDF Editor</h1>
+        <p>Edit text, remove words, and export your PDF in-browser.</p>
+      </header>
+
+      <section class="toolbar">
+        <label class="upload">
+          <input id="fileInput" type="file" accept="application/pdf" />
+          Upload PDF
+        </label>
+
+        <button id="prevPage" disabled>◀ Prev</button>
+        <span id="pageLabel">Page 0 / 0</span>
+        <button id="nextPage" disabled>Next ▶</button>
+
+        <button id="addText" disabled>Add Text</button>
+        <button id="eraseWord" disabled>Erase Mode: Off</button>
+
+        <label for="fontSize">Size</label>
+        <input id="fontSize" type="number" min="8" max="96" value="20" />
+
+        <button id="download" disabled>Download Edited PDF</button>
+      </section>
+
+      <section id="editorContainer" class="editor-container">
+        <canvas id="pdfCanvas"></canvas>
+        <div id="overlay"></div>
+      </section>
+    </main>
+
+    <script type="module" src="script.js"></script>
+  </body>
+</html>
