@@ -28,10 +28,6 @@ body {
   padding: 20px;
 }
 
-header h1 {
-  margin-bottom: 5px;
-}
-
 .toolbar {
   display: flex;
   flex-wrap: wrap;
@@ -40,7 +36,7 @@ header h1 {
   background: var(--card);
   padding: 14px;
   border-radius: 14px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
   margin-bottom: 20px;
 }
 
@@ -52,7 +48,6 @@ input[type='color'] {
   border-radius: 10px;
   background: var(--card);
   color: var(--text);
-  transition: 0.2s ease;
 }
 
 button:hover:not(:disabled) {
@@ -94,7 +89,7 @@ button:disabled {
   margin: auto;
   border-radius: 14px;
   overflow: hidden;
-  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 12px 35px rgba(0,0,0,0.15);
   background: var(--card);
 }
 
@@ -107,12 +102,12 @@ button:disabled {
   position: absolute;
   min-width: 40px;
   border: 1px dashed var(--accent);
-  background: rgba(255, 255, 255, 0.6);
+  background: rgba(255,255,255,0.6);
   padding: 2px 6px;
 }
 
 body.dark .text-layer-item {
-  background: rgba(30, 41, 59, 0.6);
+  background: rgba(30,41,59,0.6);
 }
 
 .erase-mark {

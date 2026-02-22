@@ -1,56 +1,62 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Fast PDF Editor</title>
-    <link rel="stylesheet" href="styles.css" />
-    <script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
-  </head>
-  <body>
-    <main class="app">
-      <header>
-        <h1>Fast PDF Editor</h1>
-        <p>Edit text, remove words, and export your PDF in-browser.</p>
-      </header>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fast PDF Editor</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+</head>
 
-      <section class="toolbar">
-  <label class="upload">
-    <input id="fileInput" type="file" accept="application/pdf" />
-    📂 Upload
-  </label>
+<body>
+  <main class="app">
+    <header>
+      <h1>Fast PDF Editor</h1>
+      <p>Edit text, remove words, zoom, dark mode & export PDF.</p>
+    </header>
 
-  <div class="divider"></div>
+    <section class="toolbar">
+      <label class="upload">
+        <input id="fileInput" type="file" accept="application/pdf" />
+        📂 Upload
+      </label>
 
-  <button id="prevPage" disabled>◀</button>
-  <span id="pageLabel">Page 0 / 0</span>
-  <button id="nextPage" disabled>▶</button>
+      <div class="divider"></div>
 
-  <div class="divider"></div>
+      <button id="prevPage" disabled>◀</button>
+      <span id="pageLabel">Page 0 / 0</span>
+      <button id="nextPage" disabled>▶</button>
 
-  <button id="zoomOut" disabled>➖</button>
-  <button id="zoomIn" disabled>➕</button>
+      <div class="divider"></div>
 
-  <div class="divider"></div>
+      <button id="zoomOut" disabled>➖</button>
+      <button id="zoomIn" disabled>➕</button>
 
-  <button id="addText" disabled>✏ Add Text</button>
-  <button id="eraseWord" disabled>🧽 Erase</button>
+      <div class="divider"></div>
 
-  <label for="fontSize">Size</label>
-  <input id="fontSize" type="number" min="8" max="96" value="20" />
+      <button id="addText" disabled>✏ Add Text</button>
+      <button id="eraseWord" disabled>🧽 Erase</button>
 
-  <input type="color" id="textColor" value="#000000" />
+      <label>Size</label>
+      <input id="fontSize" type="number" min="8" max="96" value="20" />
 
-  <div class="divider"></div>
+      <input type="color" id="textColor" value="#000000" />
 
-  <button id="darkModeToggle">🌙</button>
+      <div class="divider"></div>
 
-  <button id="download" disabled class="primary">
-    ⬇ Download
-  </button>
-</section>
-    </main>
+      <button id="darkModeToggle">🌙</button>
 
-    <script type="module" src="script.js"></script>
-  </body>
+      <button id="download" disabled class="primary">
+        ⬇ Download
+      </button>
+    </section>
+
+    <section id="editorContainer" class="editor-container">
+      <canvas id="pdfCanvas"></canvas>
+      <div id="overlay"></div>
+    </section>
+  </main>
+
+  <script type="module" src="script.js"></script>
+</body>
 </html>
