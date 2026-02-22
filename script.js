@@ -13,6 +13,10 @@ const pageLabel = document.getElementById('pageLabel');
 const fontSizeInput = document.getElementById('fontSize');
 const canvas = document.getElementById('pdfCanvas');
 const overlay = document.getElementById('overlay');
+const zoomInBtn = document.getElementById('zoomIn');
+const zoomOutBtn = document.getElementById('zoomOut');
+const darkModeToggle = document.getElementById('darkModeToggle');
+const textColorInput = document.getElementById('textColor');
 
 const state = {
   pdfjsDoc: null,
@@ -20,6 +24,7 @@ const state = {
   currentPage: 1,
   pageCount: 0,
   scale: 1.4,
+  textColor: '#000000',
   eraseMode: false,
   editsByPage: new Map()
 };
@@ -38,6 +43,7 @@ const renderOverlay = () => {
   edits.texts.forEach((item, idx) => {
     const input = document.createElement('input');
     input.value = item.text;
+    input.style.color = item.color || '#000000';
     input.className = 'text-layer-item';
     input.style.left = `${item.x}px`;
     input.style.top = `${item.y}px`;
@@ -118,10 +124,8 @@ fileInput.addEventListener('change', async (e) => {
   state.currentPage = 1;
   state.editsByPage.clear();
 
-  [prevPageBtn, nextPageBtn, addTextBtn, eraseWordBtn, downloadBtn].forEach((btn) => {
-    btn.disabled = false;
-  });
-
+  [prevPageBtn, nextPageBtn, addTextBtn, eraseWordBtn, downloadBtn, zoomInBtn, zoomOutBtn]
+.forEach(btn => btn.disabled = false);
   renderPage();
 });
 
@@ -143,7 +147,8 @@ addTextBtn.addEventListener('click', () => {
     x: 40,
     y: 40,
     text: 'Edit me',
-    fontSize: Number(fontSizeInput.value) || 20
+    fontSize: Number(fontSizeInput.value) || 20,
+    color: textColorInput.value   // 👈 ADD THIS
   });
   renderOverlay();
 });
@@ -184,6 +189,20 @@ downloadBtn.addEventListener('click', async () => {
         color: rgb(1, 1, 1)
       });
     });
+zoomInBtn.addEventListener('click', async () => {
+  state.scale += 0.2;
+  await renderPage();
+});
+
+zoomOutBtn.addEventListener('click', async () => {
+  if (state.scale <= 0.6) return;
+  state.scale -= 0.2;
+  await renderPage();
+});
+
+darkModeToggle.addEventListener('click', () => {
+  document.body.classList.toggle('dark');
+});
 
     edits.texts.forEach((item) => {
       page.drawText(item.text, {
@@ -191,8 +210,11 @@ downloadBtn.addEventListener('click', async () => {
         y: height - (item.y + item.fontSize) * scaleY,
         size: item.fontSize * scaleY,
         font,
-        color: rgb(0, 0, 0)
-      });
+        color: rgb(
+  parseInt(item.color.slice(1, 3), 16) / 255,
+  parseInt(item.color.slice(3, 5), 16) / 255,
+  parseInt(item.color.slice(5, 7), 16) / 255
+)
     });
   }
 

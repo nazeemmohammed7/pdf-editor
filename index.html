@@ -15,28 +15,40 @@
       </header>
 
       <section class="toolbar">
-        <label class="upload">
-          <input id="fileInput" type="file" accept="application/pdf" />
-          Upload PDF
-        </label>
+  <label class="upload">
+    <input id="fileInput" type="file" accept="application/pdf" />
+    📂 Upload
+  </label>
 
-        <button id="prevPage" disabled>◀ Prev</button>
-        <span id="pageLabel">Page 0 / 0</span>
-        <button id="nextPage" disabled>Next ▶</button>
+  <div class="divider"></div>
 
-        <button id="addText" disabled>Add Text</button>
-        <button id="eraseWord" disabled>Erase Mode: Off</button>
+  <button id="prevPage" disabled>◀</button>
+  <span id="pageLabel">Page 0 / 0</span>
+  <button id="nextPage" disabled>▶</button>
 
-        <label for="fontSize">Size</label>
-        <input id="fontSize" type="number" min="8" max="96" value="20" />
+  <div class="divider"></div>
 
-        <button id="download" disabled>Download Edited PDF</button>
-      </section>
+  <button id="zoomOut" disabled>➖</button>
+  <button id="zoomIn" disabled>➕</button>
 
-      <section id="editorContainer" class="editor-container">
-        <canvas id="pdfCanvas"></canvas>
-        <div id="overlay"></div>
-      </section>
+  <div class="divider"></div>
+
+  <button id="addText" disabled>✏ Add Text</button>
+  <button id="eraseWord" disabled>🧽 Erase</button>
+
+  <label for="fontSize">Size</label>
+  <input id="fontSize" type="number" min="8" max="96" value="20" />
+
+  <input type="color" id="textColor" value="#000000" />
+
+  <div class="divider"></div>
+
+  <button id="darkModeToggle">🌙</button>
+
+  <button id="download" disabled class="primary">
+    ⬇ Download
+  </button>
+</section>
     </main>
 
     <script type="module" src="script.js"></script>
